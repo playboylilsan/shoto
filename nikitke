@@ -1,0 +1,22 @@
+from math import (cos, tan, sqrt)
+from prettytable import PrettyTable 
+def ur(x):
+    return round((tan(x) + (cos(x*x))/(sqrt(pow(x,3)+pow(x,2)))),2)
+x = -5.7
+d = []
+urmin = 100
+while x < 5.8:
+    if pow(x,3) <= 0: d.append(x); d.append('нет решений')
+    else:
+        d.append(x); d.append(ur(x))
+        if urmin > ur(x):
+            urmin = ur(x)
+    x = round(x+0.5 , 1)
+columns = 2
+table = PrettyTable(['x','y'])
+d_data = d[:]
+while d_data:
+    table.add_row(d_data[:columns])
+    d_data = d_data[columns:]
+print(table)
+print(f'Минимальное значение y: {urmin}')
